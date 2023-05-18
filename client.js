@@ -15,6 +15,9 @@ const connect = function () {
 
   conn.on("connect", () => conn.write("Name: NPF"));
 
+  // conn.on("connect", () => setInterval(() => conn.write('Move: up'), 50));
+  // conn.on("connect", () => setInterval(() => conn.write('Move: right'), 100));
+
   return conn;
 };
 
