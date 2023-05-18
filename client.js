@@ -1,10 +1,11 @@
 const net = require('net');
+
 const { IP, PORT } = require("./constants");
 // establishes a connection with the game server
 const connect = function () {
   const conn = net.createConnection({
-    IP,
-    PORT
+    host: 'localhost',
+    port: 50541
   });
 
   // interpret incoming data as text
@@ -18,11 +19,7 @@ const connect = function () {
     conn.write("Say: silly snake goes sssssssss");
     conn.write("Say: i'm a hungry lil snek");
     conn.write("Say: sssssssss");
-    // Add other connect-related actions here
   });
-
-  // conn.on("connect", () => setInterval(() => conn.write('Move: up'), 50));
-  // conn.on("connect", () => setInterval(() => conn.write('Move: right'), 100));
 
   return conn;
 };
