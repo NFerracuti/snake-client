@@ -3,6 +3,7 @@ const net = require('net');
 const { MESSAGES, DOWN, RIGHT, LEFT, UP } = require('./constants');
 let connection;
 
+// define the inputs
 const setupInput = (conn) => {
   connection = conn;
   const stdin = process.stdin;
@@ -13,8 +14,10 @@ const setupInput = (conn) => {
   return stdin;
 };
 
+// for use below, so we can stop movements
 let movementInterval;
 
+// logical function to handle the user controls
 const handleUserInput = (key) => {
 
   if (key === '\u0003') {
