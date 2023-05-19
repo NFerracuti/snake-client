@@ -1,5 +1,6 @@
 const net = require('net');
 
+const { MESSAGES, DOWN, RIGHT, LEFT, UP } = require('./constants');
 let connection;
 
 const setupInput = (conn) => {
@@ -20,17 +21,24 @@ const handleUserInput = (key) => {
     process.exit();
   }
 
-  clearInterval(movementInterval);
-
-  if (key === 'w') {
+  if (key === UP) {
+    clearInterval(movementInterval);
     movementInterval = setInterval(() => connection.write('Move: up'), 100);
-  } else if (key === 'a') {
+  } else if (key === LEFT) {
+    clearInterval(movementInterval);
     movementInterval = setInterval(() => connection.write('Move: left'), 100);
-  } else if (key === 'd') {
+  } else if (key === RIGHT) {
+    clearInterval(movementInterval);
     movementInterval = setInterval(() => connection.write('Move: right'), 100);
-  } else if (key === 's') {
+  } else if (key === DOWN) {
+    clearInterval(movementInterval);
     movementInterval = setInterval(() => connection.write('Move: down'), 100);
   }
+
+  if (MESSAGES[key]) {
+    connection.write(MESSAGES[key]);
+  }
+
 };
 
 module.exports = {
